@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOTIVE Sales Growth Workshop #1 — July 20</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0f0f0f;
+    --white: #fafaf8;
+    --gold: #c49a2a;
+    --gold-light: #f5e9c8;
+    --gold-dark: #8a6a14;
+    --text: #1a1a1a;
+    --muted: #5a5a5a;
+    --border: #e0ddd5;
+    --surface: #f2f0ea;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 1.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .nav-brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--black);
+    letter-spacing: -0.02em;
+  }
+  .nav-cta {
+    background: var(--black);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 100px;
+    transition: background 0.18s, transform 0.12s;
+  }
+  .nav-cta:hover { background: var(--gold-dark); transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    padding: 5rem 1.5rem 4rem;
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: var(--gold-light);
+    color: var(--gold-dark);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 6vw, 3.2rem);
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: var(--black);
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 500px;
+    margin: 0 auto 2rem;
+  }
+  .hero-meta {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .meta-icon {
+    width: 28px; height: 28px;
+    background: var(--surface);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+  .hero-cta {
+    display: inline-block;
+    background: var(--black);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 16px 36px;
+    border-radius: 100px;
+    transition: background 0.18s, transform 0.12s, box-shadow 0.18s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  }
+  .hero-cta:hover {
+    background: var(--gold-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+  }
+  .hero-price {
+    margin-top: 0.75rem;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .hero-price strong {
+    color: var(--gold-dark);
+    font-weight: 600;
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0;
+  }
+
+  /* SECTIONS */
+  section { padding: 4rem 1.5rem; max-width: 680px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 1.25rem;
+  }
+
+  /* PROBLEM */
+  .problem-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 1.5rem;
+  }
+  .problem-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--surface);
+    border-radius: 10px;
+    font-size: 15px;
+    color: var(--text);
+  }
+  .problem-list li::before {
+    content: '✗';
+    color: #c0392b;
+    font-weight: 700;
+    font-size: 14px;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  /* WHAT YOU'LL LEARN */
+  .learn-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 1.5rem;
+  }
+  @media (max-width: 480px) { .learn-grid { grid-template-columns: 1fr; } }
+  .learn-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .learn-card-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .learn-card-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+  .learn-card-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* BONUSES */
+  .bonus-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 1.5rem;
+  }
+  .bonus-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .bonus-list li:last-child { border-bottom: none; }
+  .bonus-icon {
+    width: 32px; height: 32px;
+    background: var(--gold-light);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  /* WHO */
+  .who-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 1.5rem;
+  }
+  .who-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 15px;
+    color: var(--text);
+  }
+  .who-list li::before {
+    content: '→';
+    color: var(--gold);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* PRICING */
+  .pricing-card {
+    background: var(--black);
+    color: var(--white);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+  .pricing-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--black);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-bottom: 1.25rem;
+  }
+  .pricing-amount {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3.5rem;
+    letter-spacing: -0.04em;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .pricing-currency {
+    font-size: 1.2rem;
+    vertical-align: super;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+  }
+  .pricing-note {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 1.75rem;
+  }
+  .pricing-note s { color: rgba(255,255,255,0.35); }
+  .pricing-cta {
+    display: block;
+    background: var(--gold);
+    color: var(--black);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 16px;
+    border-radius: 100px;
+    transition: background 0.18s, transform 0.12s;
+    margin-bottom: 1rem;
+  }
+  .pricing-cta:hover { background: #e0b030; transform: translateY(-1px); }
+  .pricing-guarantee {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+  }
+
+  /* FAQ */
+  .faq-list {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0;
+  }
+  .faq-q {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--black);
+    margin-bottom: 6px;
+  }
+  .faq-a {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  footer strong { color: var(--text); }
+
+  /* ANIMATION */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  section {
+    animation: fadeUp 0.5s ease both;
+    animation-play-state: paused;
+  }
+  section.visible { animation-play-state: running; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">MOTIVE</span>
+  <a href="#register" class="nav-cta">Register Now</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Sales Growth Workshop #1</div>
+  <h1>Turn More Inquiries<br>Into <em>Sales</em></h1>
+  <p class="hero-sub">A 90-minute live workshop for small business owners who are tired of sending prices and hearing nothing back.</p>
+  <div class="hero-meta">
+    <div class="meta-item"><div class="meta-icon">📅</div> Monday, July 20</div>
+    <div class="meta-item"><div class="meta-icon">🕕</div> 6:00 – 7:30 PM</div>
+    <div class="meta-item"><div class="meta-icon">💻</div> Zoom (link sent after payment)</div>
+  </div>
+  <a href="#register" class="hero-cta">Secure Your Spot</a>
+  <p class="hero-price">Launch rate: <strong>JA$2,500</strong> — limited spots available</p>
+</div>
+
+<hr class="section-divider">
+
+<!-- PROBLEM -->
+<section>
+  <div class="section-label">The Problem</div>
+  <h2 class="section-title">Sound familiar?</h2>
+  <p style="color: var(--muted); font-size: 15px;">You're getting inquiries — but they're not turning into clients. Here's what most small business owners experience:</p>
+  <ul class="problem-list">
+    <li>Someone asks for your price, you reply, and then… silence.</li>
+    <li>You're not sure when or how to follow up without seeming desperate.</li>
+    <li>You feel like you're losing sales but can't pinpoint exactly where.</li>
+    <li>You're busy quoting people who were never going to buy.</li>
+  </ul>
+</section>
+
+<hr class="section-divider">
+
+<!-- WHAT YOU'LL LEARN -->
+<section>
+  <div class="section-label">What You'll Learn</div>
+  <h2 class="section-title">Leave with a system, not just ideas</h2>
+  <div class="learn-grid">
+    <div class="learn-card">
+      <div class="learn-card-num">01</div>
+      <div class="learn-card-title">Find Your Sales Leaks</div>
+      <div class="learn-card-desc">Spot exactly where inquiries are falling through the cracks in your current process.</div>
+    </div>
+    <div class="learn-card">
+      <div class="learn-card-num">02</div>
+      <div class="learn-card-title">The MOTIVE Framework</div>
+      <div class="learn-card-desc">A simple method for handling inquiries that moves people from interested to paying.</div>
+    </div>
+    <div class="learn-card">
+      <div class="learn-card-num">03</div>
+      <div class="learn-card-title">Follow-Up That Works</div>
+      <div class="learn-card-desc">Know exactly what to say, when to say it, and how often — without being pushy.</div>
+    </div>
+    <div class="learn-card">
+      <div class="learn-card-num">04</div>
+      <div class="learn-card-title">Real Case Studies</div>
+      <div class="learn-card-desc">See how other small business owners in Jamaica are closing more sales with these tools.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- BONUSES -->
+<section>
+  <div class="section-label">Included</div>
+  <h2 class="section-title">Bonuses you'll actually use</h2>
+  <ul class="bonus-list">
+    <li><div class="bonus-icon">💬</div> <div><strong>Follow-Up Message Templates</strong> — Copy-paste messages for WhatsApp, email, and DMs that don't feel awkward.</div></li>
+    <li><div class="bonus-icon">📋</div> <div><strong>Inquiry Tracking Sheet</strong> — Never lose track of a hot lead again. Simple spreadsheet, ready to go.</div></li>
+    <li><div class="bonus-icon">✅</div> <div><strong>Conversation Review Checklist</strong> — A quick audit tool to find where your sales process is leaking money.</div></li>
+    <li><div class="bonus-icon">🎥</div> <div><strong>Workshop Recording</strong> — Can't make it live? The recording will be sent to all registered attendees.</div></li>
+  </ul>
+</section>
+
+<hr class="section-divider">
+
+<!-- WHO IT'S FOR -->
+<section>
+  <div class="section-label">Who This Is For</div>
+  <h2 class="section-title">This workshop is for you if…</h2>
+  <ul class="who-list">
+    <li>You run a small business and handle your own sales inquiries</li>
+    <li>You're getting interest but not enough of it converts to actual sales</li>
+    <li>You want a practical system, not vague motivational advice</li>
+    <li>You're ready to close more sales with the leads you already have</li>
+  </ul>
+</section>
+
+<hr class="section-divider">
+
+<!-- PRICING / REGISTER -->
+<section id="register">
+  <div class="section-label">Register</div>
+  <h2 class="section-title">Join the workshop</h2>
+  <div class="pricing-card">
+    <div class="pricing-badge">🔥 Launch Rate — Limited Spots</div>
+    <div class="pricing-amount"><span class="pricing-currency">JA$</span>2,500</div>
+    <p class="pricing-note">Regular price: <s>JA$4,500</s> — save JA$2,000 today</p>
+    <!-- REPLACE THIS HREF WITH YOUR STRIPE PAYMENT LINK -->
+    <a href="https://buy.stripe.com/4gM3cv44q3akgG89UW8og02" class="pricing-cta" target="_blank">Register &amp; Pay Now →</a>
+    <p class="pricing-guarantee">Zoom link sent to your email immediately after payment · Secure checkout via Stripe</p>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- FAQ -->
+<section>
+  <div class="section-label">Questions</div>
+  <h2 class="section-title">Frequently asked</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q">What do I need to attend?</div>
+      <div class="faq-a">Just a phone, tablet, or computer with internet access. You'll receive the Zoom link by email after you register.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Will there be a recording?</div>
+      <div class="faq-a">Yes. All registered attendees will receive a recording link within 24 hours of the workshop.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is this relevant to my type of business?</div>
+      <div class="faq-a">If you receive inquiries and quote clients — whether you're a photographer, consultant, caterer, contractor, or any service-based business — yes, this is for you.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What if I can't make it live?</div>
+      <div class="faq-a">Register anyway. The recording and all bonus resources will be sent to you automatically.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How do I pay?</div>
+      <div class="faq-a">Click "Register &amp; Pay Now" above. You'll be taken to a secure Stripe checkout where you can pay by card. Takes less than 2 minutes.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>MOTIVE Sales Growth Workshop #1</strong></p>
+  <p style="margin-top: 6px;">Monday, July 20 · 6:00 – 7:30 PM · Zoom</p>
+  <p style="margin-top: 12px;">Questions? Reach out on WhatsApp or send a message on Instagram.</p>
+</footer>
+
+<script>
+  const sections = document.querySelectorAll('section');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
